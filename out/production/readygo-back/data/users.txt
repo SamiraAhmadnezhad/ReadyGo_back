@@ -1,4 +1,4 @@
 smyra,,samira2004@yahoo.com,,20040417,,samira,,18,,comp,,401243026,,10,,true,, ,,0,,0000/0/0
 fs2ar,,fateme@gmail.com,,71404002,,fatemeh,,22,,bargh,,401243060,,20,,false,, ,,0,,0000/0/0
-MaRy,,maryam@yahoo.com,,12345678,, ,, ,, ,, ,,0,,false,, ,,0,,0000/0/0
-Sina_10,,sina@gmail.com,,87654321,, ,, ,, ,, ,,0,,false,, ,,0,,0000/0/0
+MaRy,,maryam@yahoo.com,,12345678,, ,,0,, ,,0,,0,,false,, ,,0,,0000/0/0
+Sina_10,,sina@gmail.com,,87654321,, ,,0 ,, ,, 0,,0,,false,, ,,0,,0000/0/0

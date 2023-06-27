@@ -1,8 +1,5 @@
 package controller;
 
-import database.Database;
-import utils.Convertor;
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -11,10 +8,9 @@ public class Controller {
         Scanner scan = new Scanner(new File("src/data/books.txt"));
         String result="";
         while(scan.hasNextLine()) {
-            result += scan.nextLine()+",,";
+            result += scan.nextLine()+"**";
         }
         scan.close();
-        //System.out.println(result);
         return result;
     }
     private String checkSingUp(String data) throws IOException {
@@ -28,7 +24,7 @@ public class Controller {
             }
         }
         FileWriter fileWriter=new FileWriter("src/data/users.txt" ,true);
-        String s=emailAndPassAndusername[2]+",,"+emailAndPassAndusername[0]+",,"+emailAndPassAndusername[1]+",, ,, ,, ,, ,,0,,false,, ,,0,,0000/0/0";
+        String s=emailAndPassAndusername[2]+",,"+emailAndPassAndusername[0]+",,"+emailAndPassAndusername[1]+",, ,,0 ,, ,, 0,,0,,false,, ,,0,,0000/0/0";
         System.out.println(s.split(",,").length);
         fileWriter.write(s+"\n");
         fileWriter.close();
@@ -44,7 +40,7 @@ public class Controller {
             if (s.contains(emailAndPass[0]+",,"))
                 if (!s.contains(emailAndPass[1]+",,")) {
                     scan.close();
-                    return "Password is incorrect!";
+                    return "Password is incorrect!\n";
                 }
                 else {
                     scan.close();
@@ -52,7 +48,7 @@ public class Controller {
                 }
         }
         scan.close();
-        return "User not found!";
+        return "User not found!\n";
     }
     public  String run (String command, String data) throws IOException {
         switch (command){
