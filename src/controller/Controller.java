@@ -3,6 +3,7 @@ package controller;
 import database.Database;
 import utils.Convertor;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -25,21 +26,17 @@ public class Controller {
 
     private String checkLogin(String data) throws FileNotFoundException {
         String[] emailAndPass = data.split(",,");
-        Scanner scan = new Scanner("src/data/massages.txt");
+        System.out.println(emailAndPass[0]+emailAndPass[1]);
+        Scanner scan = new Scanner(new File("src/data/massages.txt"));
         while(scan.hasNextLine()){
-            if (scan.nextLine().contains(emailAndPass[0]))
-                if (!scan.nextLine().contains(emailAndPass[1]))
+            String s=scan.nextLine();
+            if (s.contains(emailAndPass[0]+",,"))
+                if (!s.contains(emailAndPass[1]+",,"))
                     return "Password is incorrect!";
                 else
-                    return "Login successfully";
+                    return "Login successfully\n"+s;
         }
         return "User not found!";
-//        try {
-//            Database.getInstance().getTable("massages").insert(data);
-//            return "massage successfuly saved";
-//        }catch (Exception e){
-//            return "somthing goes wrong";
-//        }
     }
     public  String run (String command, String data) throws FileNotFoundException {
         //HashMap<String , String> dataMap= Convertor.stringToMap(data);
@@ -49,7 +46,6 @@ public class Controller {
             case "getBy":
                 return getBy();
             case "checkLogin":
-                System.out.println(data);
                 return checkLogin(data);
         }
         return "eshteb zadi!!!";
