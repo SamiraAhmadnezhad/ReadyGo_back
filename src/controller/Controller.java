@@ -8,8 +8,6 @@ public class Controller {
         Scanner scan = new Scanner(new File("src/data/books.txt"));
         String result="";
         while(scan.hasNextLine()) {
-            if (scan.nextLine().isEmpty())
-                continue;
             result += scan.nextLine()+"**";
         }
         scan.close();
