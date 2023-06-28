@@ -24,7 +24,7 @@ public class Controller {
             }
         }
         FileWriter fileWriter=new FileWriter("src/data/users.txt" ,true);
-        String s=emailAndPassAndusername[2]+",,"+emailAndPassAndusername[0]+",,"+emailAndPassAndusername[1]+",, ,,0 ,, ,, 0,,0,,false,, ,,0,,0000/0/0";
+        String s=emailAndPassAndusername[2]+",,"+emailAndPassAndusername[0]+",,"+emailAndPassAndusername[1]+",, ,,0 ,, ,, 0,,0,,false,, ,, ,, ,, ,,";
         System.out.println(s.split(",,").length);
         fileWriter.write(s+"\n");
         fileWriter.close();
@@ -50,8 +50,28 @@ public class Controller {
         scan.close();
         return "User not found!\n";
     }
+    private String byBook(String data) throws IOException {
+        String[] usernameAndUser = data.split("!!!");
+        Scanner scan = new Scanner(new File("src/data/users.txt"));
+        String result="";
+        while(scan.hasNextLine()) {
+            String s = scan.nextLine();
+            if (s.contains(usernameAndUser[0]+",,")) {
+                result+=usernameAndUser[1]+",,\n";
+                continue;
+            }
+            result+=s+"\n";
+        }
+        FileWriter fileWriter=new FileWriter("src/data/users.txt" ,false);
+        fileWriter.write(result);
+        fileWriter.close();
+        scan.close();
+        return "chage user successfully!";
+    }
     public  String run (String command, String data) throws IOException {
         switch (command){
+            case "byBook":
+                return byBook(data);
             case "checkSingUp":
                 return checkSingUp(data);
             case "checkLogin":
