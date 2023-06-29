@@ -50,7 +50,7 @@ public class Controller {
         scan.close();
         return "User not found!\n";
     }
-    private String byBook(String data) throws IOException {
+    private String changeUser(String data) throws IOException {
         String[] usernameAndUser = data.split("!!!");
         Scanner scan = new Scanner(new File("src/data/users.txt"));
         String result="";
@@ -68,10 +68,33 @@ public class Controller {
         scan.close();
         return "chage user successfully!";
     }
+    private String changeBook(String data) throws IOException {
+        System.out.println("start");
+        String[] usernameAndUser = data.split("!!!");
+        Scanner scan = new Scanner(new File("src/data/books.txt"));
+        String result="";
+        while(scan.hasNextLine()) {
+            String s = scan.nextLine();
+            if (s.contains(usernameAndUser[0])) {
+                result+=usernameAndUser[1]+"\n";
+                continue;
+            }
+            result+=s+"\n";
+        }
+        System.out.println(result);
+        FileWriter fileWriter=new FileWriter("src/data/books.txt" ,false);
+        fileWriter.write(result);
+        fileWriter.close();
+        scan.close();
+        return "chage book successfully!";
+    }
     public  String run (String command, String data) throws IOException {
         switch (command){
-            case "byBook":
-                return byBook(data);
+            case "changeBook":
+                System.out.println("go");
+                return changeBook(data);
+            case "changeUser":
+                return changeUser(data);
             case "checkSingUp":
                 return checkSingUp(data);
             case "checkLogin":
