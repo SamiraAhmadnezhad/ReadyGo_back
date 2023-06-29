@@ -20,11 +20,15 @@ public class Controller {
             String s = scan.nextLine();
             if (s.contains(emailAndPassAndusername[2]+",,")) {
                 scan.close();
-                return "username is unavailable";
+                return "username is unavailable\n";
+            }
+            if (s.contains(emailAndPassAndusername[3]+",,")) {
+                scan.close();
+                return "studentnumber is unavailable\n";
             }
         }
         FileWriter fileWriter=new FileWriter("src/data/users.txt" ,true);
-        String s=emailAndPassAndusername[2]+",,"+emailAndPassAndusername[0]+",,"+emailAndPassAndusername[1]+",, ,,0 ,, ,, 0,,0,,false,, ,, ,, ,, ,,";
+        String s=emailAndPassAndusername[2]+",,"+emailAndPassAndusername[0]+",,"+emailAndPassAndusername[1]+",, ,, ,, ,,"+emailAndPassAndusername[3]+",,0,,false,, ,, ,, ,, ,,";
         System.out.println(s.split(",,").length);
         fileWriter.write(s+"\n");
         fileWriter.close();
@@ -91,7 +95,6 @@ public class Controller {
     public  String run (String command, String data) throws IOException {
         switch (command){
             case "changeBook":
-                System.out.println("go");
                 return changeBook(data);
             case "changeUser":
                 return changeUser(data);
